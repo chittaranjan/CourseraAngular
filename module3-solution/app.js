@@ -38,11 +38,13 @@ function MenuCategoriesController(MenuCategoriesService) {
   menu.searchTerm = "";
   menu.searchResult = "";
   menu.searchItems = function() {
-    if (menu.searchTerm === null || menu.searchTerm==="") {
+    menu.found = [];
+    menu.searchTerm = menu.searchTerm.replace(/\s+/g,' ').trim();
+
+    if (menu.searchTerm==='') {
       menu.searchResult = "Nothing found";
       return;
     }
-    menu.found = [];
     var promise = MenuCategoriesService.getMenuCategories();
     menu.searchResult = "Looking for Menu Items.....";
     menu.isSearchCompleted = false;
