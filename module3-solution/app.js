@@ -36,15 +36,16 @@ function MenuCategoriesController(MenuCategoriesService) {
   var menu = this;
 
   menu.searchTerm = "";
-  menu.searchResultNotFound = "";
+  menu.searchResult = "";
   menu.searchItems = function() {
     if (menu.searchTerm === null || menu.searchTerm==="") {
-      menu.searchResultNotFound = "Nothing found";
+      menu.searchResult = "Nothing found";
       return;
     }
     menu.found = [];
     var promise = MenuCategoriesService.getMenuCategories();
-
+    menu.searchResult = "Looking for Menu Items.....";
+    menu.isSearchCompleted = false;
     promise.then(function (response) {
 
       var menuResponse = response.data;
@@ -56,11 +57,12 @@ function MenuCategoriesController(MenuCategoriesService) {
           if (description.indexOf(menu.searchTerm) > 0) {
             menu.found.push(menuItem);
           }
-        })
+        });
+        menu.isSearchCompleted = true;
         if (menu.found.length <=0) {
-          menu.searchResultNotFound = "Nothing found";
+          menu.searchResult = "Nothing found";
         } else {
-          menu.searchResultNotFound = "";
+          menu.searchResult = "";
         }
       }
     })
