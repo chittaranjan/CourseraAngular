@@ -56,7 +56,7 @@ function MenuCategoriesController(MenuCategoriesService) {
         menuItems.forEach(function(menuItem) {
           var description = menuItem['description'];
 
-          if (description.indexOf(menu.searchTerm) > 0) {
+          if (description.indexOf(menu.searchTerm.toLowerCase()) > 0) {
             menu.found.push(menuItem);
           }
         });

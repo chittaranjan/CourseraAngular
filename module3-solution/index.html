@@ -26,10 +26,11 @@
 
     <!-- found-items should be implemented as a component -->
     <div>
-      <div class="noItems" ng-if="menu.searchTerm===''">
+      <div class="noItems" ng-if="menu.searchTerm==='' || (menu.isSearchCompleted===true && menu.found.length <=0)">
         {{menu.searchResult}}
       </div>
-      <div class="searching" ng-if="menu.isSearchCompleted==false">
+
+      <div class="searching" ng-if="menu.isSearchCompleted===false">
         {{menu.searchResult}}
       </div>
     </div>
