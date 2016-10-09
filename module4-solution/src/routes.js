@@ -35,8 +35,8 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
     templateUrl: 'src/shoppinglist/templates/item-detail.template.html',
     controller: "ItemDetailController as itemList",
     resolve: {
-      items: ['ShoppingListService', function (ShoppingListService) {
-        return ShoppingListService.getItemsForCategory();
+      items: ['$stateParams', 'ShoppingListService', function ($stateParams, ShoppingListService) {
+        return ShoppingListService.getItemsForCategory($stateParams.short_name);
       }]
     }
   });

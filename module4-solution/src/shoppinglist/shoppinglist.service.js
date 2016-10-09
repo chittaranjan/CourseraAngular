@@ -26,11 +26,14 @@ function ShoppingListService($http, ApiBasePath) {
     return response;
   };
 
-  service.getItemsForCategory = function () {
+  service.getItemsForCategory = function (categoryShortName) {
     items = [];
     var response = $http({
       method: "GET",
-      url: (ApiBasePath + "/menu_items.json")
+      url: (ApiBasePath + "/menu_items.json"),
+      params: {
+        category: categoryShortName
+      }
     });
     response.then(function(response) {
       var menuItems = response.data.menu_items;
