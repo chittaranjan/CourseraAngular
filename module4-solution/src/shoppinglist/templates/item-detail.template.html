@@ -1,0 +1,26 @@
+
+<table class="table">
+  <tr ng-if="itemList.items.length>0">
+      <th>
+        Item #
+      </th>
+        <th>
+          Item Short Name
+        </th>
+        <th>
+          Item Name
+        </th>
+        <th>
+          Item Description
+        </th>
+    </tr>
+    <tr ng-repeat="item in itemList.items">
+        <td>
+        {{ item.id }}
+        </td>
+        <td>{{item.short_name}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.description}}</td>
+
+    </tr>
+</table>
